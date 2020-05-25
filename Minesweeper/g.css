@@ -1,31 +1,56 @@
+.bg {
+    background-color: #6F1E51;
+    width: 600px;
+    height: 600px;
+    display: flex;
+    align-items: center;
+}
 .game_bg {
-    background-color: gray;
+    background-color: #b2bec3;
     width: 500px;
     height: 560px;
 
-    border: 5px solid;
+    border: 2px solid;
+    border-top-color: white;
+    border-left-color: white;
+    border-right-color: black;
+    border-bottom-color: black;
     
 }
 .game_header {
     height: 60px;
     width: 100%;
-    background-color: green;
+    
+    background-color: #b2bec3;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    
+
 }
 
 table {
-    /* 사이 갭 없앰 */
+    
     width: 100%;
     height: 500px;
-    border-collapse: collapse;
+    /* 사이 갭 없앰 */
+    /* border-collapse: collapse; */
+    
+    /* 사이 간격 */
+    border-spacing: 2px;
+    
 }
 td {
-    border: 1px solid black;
+    border: 2px solid;
+    /* border: solid; */
+    
     width: 20px;
     height: 20px;
+    /* padding: 10px; */
+    /* padding: 1.5px; */
+    border-top-color: white;
+    border-left-color: white;
+    border-right-color: black;
+    border-bottom-color: black;
 }
 
 .test {
@@ -72,13 +97,13 @@ select::-ms-expand {
 }
 .flag_img {
     background-image: url("./img/flag232.png");
-    width: 30px;
-    height: 30px;
+    width: 33px;
+    height: 33px;
 }
 .timer_img {
     background-image: url("./img/timer32.png");
-    width: 30px;
-    height: 30px;
+    width: 33px;
+    height: 33px;
 }
 
 .resetBtn {

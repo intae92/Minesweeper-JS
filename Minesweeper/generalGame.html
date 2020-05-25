@@ -8,39 +8,43 @@
     <link rel="stylesheet" href="g.css">
 </head>
 <body>
-    <input type="number" id="hor" placeholder="가로" value="10">
-    <input type="number" id="ver" placeholder="세로" value="10">
-    <input type="number" id="mine" placeholder="지뢰" value="20">
-    <button id="exec">실행</button>
-    <div class="game_bg">
-        <div class="game_header imgCenter">
-            <select name="level">
-                <option value="초급">초급</option>
-                <option value="중급">중급</option>
-                <option value="고급">고급</option>
-            </select>
-
-            <div class="flag_header">
-                <div class="flag_img"></div>
-                <span class="flag_count">00</span>
+    
+    <div class="bg">
+        <input type="number" id="hor" placeholder="가로" value="10">
+        <input type="number" id="ver" placeholder="세로" value="10">
+        <input type="number" id="mine" placeholder="지뢰" value="20">
+        <button id="exec">실행</button>
+        <div class="game_bg">
+            <div class="game_header imgCenter">
+                <select name="level">
+                    <option value="초급">초급</option>
+                    <option value="중급">중급</option>
+                    <option value="고급">고급</option>
+                </select>
+    
+                <div class="flag_header">
+                    <div class="flag_img"></div>
+                    <span class="flag_count">00</span>
+                </div>
+    
+                <div class="timer_header">
+                    <div class="timer_img"></div>
+                    <span class="timer_count">000</span>
+                </div>
+               
+                <button class="resetBtn imgCenter"></button>     
             </div>
-
-            <div class="timer_header">
-                <div class="timer_img"></div>
-                <span class="timer_count">000</span>
-            </div>
-           
-            <button class="resetBtn imgCenter"></button>     
+            <!-- game_header -->
+            
+            <table id="table">
+                <!-- tbody에 지뢰판 만들기 -->
+                <tbody></tbody>
+            </table>
+            <!-- table -->
         </div>
-        <!-- game_header -->
-        
-        <table id="table">
-            <!-- tbody에 지뢰판 만들기 -->
-            <tbody></tbody>
-        </table>
-        <!-- table -->
+        <!-- game_bg -->
     </div>
-    <!-- game_bg -->
+    
 
    
     <script src="mine.js"></script>
