@@ -1,8 +1,12 @@
-//sprite로 작은 이미지 
-//백그라운드 포지션을 sprite로 필요한 부분만 보이게끔
+/* 해야 할일
+시작 화면 가로 세로 입력 할 부분 만들기
+승리시 모달창 만들기
+도대체 왜 크기가 고정이 안되는 건가 딥빡~!!
+*/
+
 const execBtn = document.querySelector("#exec");
 const tbody = document.querySelector("#table > tbody");
-
+let victoryFlag = false;//승리하면 클릭 안되게 하기 위한 조건
 let stopFlag = false; //지뢰 밟으면 펑일때
 let stopClassListRemove = true;
 let tdDivClicked = false; //마우스로 누르고 td범위 나가면 테두리 원상복귀 시키기 위한 flag
@@ -58,6 +62,9 @@ function flagCount(HOR, VER){//물음표 갯수 세기
 
 let rightClicked = true;//오른쪽 버튼 누리고 마우스 이벤트 구현 안되게 하기위해서
 function handleRightClick(e){//마우스 오른쪽 클릭 물음표
+    if(victoryFlag){
+        return;
+    }
     // console.log("handleRightClick");
     console.log(e.target)
     console.dir(e.target);
@@ -126,7 +133,22 @@ function idRowCol(strId){//문자열형태의 id를 원하는 형태, 숫자인 
     return strId.split(',').map(v => Number(v));
 }
 function victory(){//승리 조건
-
+    // HOR, VER,
+    let clickedCount = 0;
+    for(let i=0; i<HOR; i++){
+        for(let j=0; j<VER; j++){
+            if(tbody.children[i].children[j].children[0].classList.contains("clicked")){
+                clickedCount++;
+            }
+        }
+    }
+    if((HOR*VER - MINE) === clickedCount){
+        stopCounter();
+        const timerText = document.querySelector("#timerText");
+        victoryFlag = true;//승리하면 클릭 안되게
+        console.log(Number(timerText.innerText));
+    }
+    return clickedCount
 }
 
 function handleLeftClick(e){//mouseup
@@ -134,7 +156,9 @@ function handleLeftClick(e){//mouseup
     // console.log(e.target.classList)
     // console.dir(e.target)
     
-    victory();//승리조건
+    if(victoryFlag){
+        return;
+    }
     if(rightClickedContext(e.target.classList)){//오른쪽 클릭 된 ! ? 변화 안되게
         return;
     }
@@ -178,12 +202,15 @@ function handleLeftClick(e){//mouseup
             }
         }
     }
-   
+    console.log(victory());//승리조건
     
 }
 let mouseDowning = false; //마우스 누르고 있는중
 function tdDivMouseDown(e){//마우스 누를때 테두리 변화
     // console.log('donw')
+    if(victoryFlag){
+        return;
+    }
     if(rightClickedContext(e.target.classList)){//오른쪽 클릭 된 ! ? 변화 안되게
         return;
     }
@@ -199,6 +226,9 @@ function tdDivMouseDown(e){//마우스 누를때 테두리 변화
 
 function tdDivMouseOut(e){
     // console.log('tdDivMouseOut')
+    if(victoryFlag){
+        return;
+    }
     if(rightClickedContext(e.target.classList)){//오른쪽 클릭 된 ! ? 변화 안되게
         return;
     }
@@ -218,6 +248,9 @@ function tdDivMouseOut(e){
 }
 function tdDivMouseMove(e){
     // console.log('tdDivMouseMove')
+    if(victoryFlag){
+        return;
+    }
     if(rightClickedContext(e.target.classList)){//오른쪽 클릭 된 ! ? 변화 안되게
         return;
     }
@@ -360,7 +393,8 @@ function theadAddDiv(){//thead에 깃발수 시간 이모티콘 넣기 위해
     const timerDivSpan = document.createElement("span");
     timerDiv.append(timerDivSpan);
     timerDivSpan.innerText = "000";
-    flagDivSpan.id = 'flagText';
+    timerDivSpan.id = "timerText"
+    flagDivSpan.id = "flagText";
     flagDiv.append(flagDivSpan);
     flagDivSpan.innerHTML = `${flags < 10 ? `00${flags}` : flags < 100 ? `0${flags}`: flags}`;
     theadThContainer.append(flagDiv, emotionDiv, timerDiv);
