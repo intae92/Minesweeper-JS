@@ -8,36 +8,57 @@
     <link rel="stylesheet" href="screen.css">
 </head>
 <body>
-   
-    <input type="number" id="hor" placeholder="가로" value="10">
-    <input type="number" id="ver" placeholder="세로" value="10">
-    <input type="number" id="mine" placeholder="지뢰" value="20">
-    <button id="exec">실행</button>
+    <div class="head">
+        <div>
+            <div class="input_head">
+                <div class="hor_input">
+                    <label for="hor">Width</label>
+                    <input class="input" type="number" id="hor" placeholder="가로" value="10">
+                </div>
+                <div class="ver_input">
+                    <label for="ver">Height</label>
+                    <input class="input" type="number" id="ver" placeholder="세로" value="10">
+                </div>
+                <div class="mine_input">
+                    <label for="mine">Mines</label>
+                    <input class="input" type="number" id="mine" placeholder="지뢰" value="20">
+                </div>
+            </div>   
+        </div>
+        <button id="exec">실행</button> 
+    </div>
     
+
+    <div class="game_hidden">
+        <div id="game_container">
+            <div id="game_board">
+                <table id="table">
+                    <thead>
+                        <tr>
+                            <!-- <th colspan="10"></th> -->
+                        </tr>
+                    </thead>
         
-    <div id="game-container">
-        <div id="game-board">
-            <table id="table">
-                <thead>
-                    <tr>
-                        <!-- <th colspan="10"></th> -->
-                    </tr>
-                </thead>
-    
-                <!-- tbody에 지뢰판 만들기 -->
-                
-                <tbody></tbody>
-                
-                
-            </table>
+                    <!-- tbody에 지뢰판 만들기 -->
+                    
+                    <tbody></tbody>
+                    
+                    
+                </table>
+            </div>
         </div>
     </div>
-        
-        
- 
-
-
     
+    
+    <div class="modal modal_hidden">
+        <div class="modal_overlay">
+            <div class="modal_content">
+                <div>승리  <span id="victory_second"></span>초</div>
+                <button id="victory_btn">❌</button>
+            </div>
+        </div>
+        
+    </div>
     
     <script src="mine.js"></script>
 </body>
